@@ -8,32 +8,33 @@
 
 (format #t "Reverse ~a\n" (Reverse data))
 
-; (define QuickSort
-;     (lambda (l)
-;         (let quick-sort-3  ((left-part )))
-;     ))
-
-(define get-by-cond 
+(define get-by-cond
     (lambda (cond l)
-        (if (null? l) 
+        ; (format #t "Data to get by cond:\t ~a\n" l)
+        (if (null? l)
             '()
-            (if (cond (car l)) 
-                (cons (car l) (get-by-cond cond (cdr l)))
-                (get-by-cond cond (cdr l))
+            (if (cond (car l))
+                (begin
+                    (cons (car l) (get-by-cond cond (cdr l)))
+                )
+                (begin
+                    (get-by-cond cond (cdr l))
+                )
             )
         )
     )
 )
 
-(define separate 
+(define quicksort 
     (lambda (l)
+        ; (format #t "Data to quicksort:\t ~a\n" l)
         (if (null? l) 
             '()
             (append
-                (append (separate (get-by-cond (lambda (i) (< i (car l))) (cdr l)))
-                        (separate (get-by-cond (lambda (i) (= i (car l))) (cdr l)))
+                (append (quicksort (get-by-cond (lambda (i) (< i (car l))) (cdr l)))
+                        (get-by-cond (lambda (i) (= i (car l))) l)
                 )  
-                        (separate (get-by-cond (lambda (i) (> i (car l))) (cdr l)))
+                        (quicksort (get-by-cond (lambda (i) (> i (car l))) (cdr l)))
             )
         )
     )
@@ -41,4 +42,4 @@
 
 (define rand-data '(5 1 4 9 2 3 8 0 7 3))
 
-(format #t "Raw data:\t ~a \nSorted data:\t ~a \n" rand-data (separate data))
+(format #t "Raw data:\t ~a \nSorted data:\t ~a \n" rand-data (quicksort rand-data))
