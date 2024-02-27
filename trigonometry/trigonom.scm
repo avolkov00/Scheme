@@ -2,7 +2,7 @@
 (let trigonom( (i 0))
  (if (<= i 180)
   (begin 
-      (format #t "a = ~a; sin(a)=~a; cos(a)=~a; tan(a)=~a\n"
+      (format #t "a = ~3a;\t sin(a)=~5f;\t cos(a)=~5f;\t tan(a)=~5f\n"
                 i 
                 (sin (* (/ i 180.0) Pi))
                 (cos (* (/ i 180.0) Pi))
@@ -13,7 +13,3 @@
   'quit
  )
 )
-
-
-
-
