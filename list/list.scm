@@ -14,12 +14,8 @@
         (if (null? l)
             '()
             (if (cond (car l))
-                (begin
                     (cons (car l) (get-by-cond cond (cdr l)))
-                )
-                (begin
                     (get-by-cond cond (cdr l))
-                )
             )
         )
     )
