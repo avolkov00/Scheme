@@ -10,7 +10,6 @@
  )
 )
 
-
 (std::ostream 
  cout << endl << endl << 10 << endl << endl
 )
